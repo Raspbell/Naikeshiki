@@ -50,6 +50,12 @@ public class CursorManager : MonoBehaviour
     private int passedFlame = 0;
     private bool waitingAfterComplete = false;
 
+    // --- ヒント機能用変数 ---
+    private float lastActionTime; // 最後に正解した時間（または開始時間）
+    private GameObject currentHintObject; // 現在表示中のヒントオブジェクト
+    private Tween hintTween; // ヒントの点滅Tween
+    // ---------------------------
+
     [Serializable]
     private class SoundEffectInfo
     {
@@ -93,6 +99,13 @@ public class CursorManager : MonoBehaviour
                 audioSource.volume = volume;
             }).AddTo(this);
         }
+
+        // --- タイマー初期化 ---
+        lastActionTime = Time.time;
+
+        // デバッグログ: 現在設定されているヒント時間を表示
+        Debug.Log($"Hint System Initialized. TimeForHint: {GameOptions.TimeForHint.Value} seconds.");
+        // -------------------------
     }
 
     void Update()
@@ -108,6 +121,14 @@ public class CursorManager : MonoBehaviour
             cursor.transform.position = new Vector3(cursorPosition.x, cursorPosition.y, 0);
             Vector3 tempPosition = Camera.main.transform.position;
             Camera.main.transform.position = new Vector3(0f, tempPosition.y, tempPosition.z);
+
+            // --- ヒント表示判定 ---
+            // チュートリアル以外、かつヘルプモード有効、かつ最後のステージでない場合
+            if (!isTutorial && !isLastStage && GameOptions.UseHelpMode.Value)
+            {
+                CheckAndShowHint();
+            }
+            // -------------------------
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -159,7 +180,7 @@ public class CursorManager : MonoBehaviour
                     distance = Vector3.Distance(currentSpriteObject.transform.position, spriteInfos[nextPickIndex].targetOrigin.transform.position);
                 }
 
-                Debug.Log(distance);
+                // Debug.Log(distance);
 
                 if (distance <= currentTolerance)
                 {
@@ -228,6 +249,78 @@ public class CursorManager : MonoBehaviour
         passedFlame++;
     }
 
+    // --- ヒント表示用メソッド ---
+    private void CheckAndShowHint()
+    {
+        // 既にヒントが出ている場合は何もしない
+        if (currentHintObject != null) return;
+
+        // 経過時間が設定を超えているかチェック
+        // GameOptions.TimeForHint.Value は PlayerPrefs に保存された値が優先されます
+        if (Time.time - lastActionTime > GameOptions.TimeForHint.Value)
+        {
+            ShowHint();
+        }
+    }
+
+    private void ShowHint()
+    {
+        if (nextPickIndex >= spriteInfos.Length) return;
+
+        var currentInfo = spriteInfos[nextPickIndex];
+
+        // 正解位置を取得 (TargetOrigin優先、なければMask)
+        Transform targetTransform = currentInfo.targetOrigin != null
+            ? currentInfo.targetOrigin.transform
+            : currentInfo.targetSpriteMask.transform;
+
+        // 【修正】ヒント生成: 
+        // 回転は targetTransform.rotation (正解配置の傾き) ではなく
+        // pickedSpritePrefab.transform.rotation (カーソル持ち状態と同じ) を使用します
+        currentHintObject = Instantiate(pickedSpritePrefab, targetTransform.position, pickedSpritePrefab.transform.rotation);
+
+        // 【修正】子オブジェクト（アウトライン用など）をすべて削除して見た目をシンプルにする
+        foreach (Transform child in currentHintObject.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // スプライトの設定
+        var sr = currentHintObject.GetComponent<SpriteRenderer>();
+        if (sr != null)
+        {
+            sr.sprite = currentInfo.sprite;
+
+            // 【修正】目立ちすぎないようにアルファ値を制限
+            // 初期状態: かなり薄く(0.1)
+            Color baseColor = Color.white;
+            baseColor.a = 0.1f;
+            sr.color = baseColor;
+
+            // アニメーション: 0.1(ほぼ見えない) ～ 0.4(薄く見える) の間でゆっくり点滅
+            // 完全に不透明(1.0f)にはならないようにする
+            hintTween = sr.DOFade(0.4f, 1.5f) // 時間も少しゆっくりに(1.5秒)
+                .SetLoops(-1, LoopType.Yoyo)
+                .SetEase(Ease.InOutSine);
+        }
+    }
+
+    private void StopHint()
+    {
+        if (hintTween != null)
+        {
+            hintTween.Kill();
+            hintTween = null;
+        }
+
+        if (currentHintObject != null)
+        {
+            Destroy(currentHintObject);
+            currentHintObject = null;
+        }
+    }
+    // ---------------------------
+
     public void PickNextSprite()
     {
         Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -255,6 +348,11 @@ public class CursorManager : MonoBehaviour
     {
         if (currentSpriteObject != null)
         {
+            // --- 正解時にヒントを停止しタイマーをリセット ---
+            StopHint();
+            lastActionTime = Time.time;
+            // ---------------------------------------------
+
             audioSource.PlayOneShot(soundEffectInfo.unpickClip);
             nextPickIndex++;
             Destroy(currentSpriteObject);

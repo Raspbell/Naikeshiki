@@ -19,7 +19,6 @@ public class ZoomCanvasManager : MonoBehaviour
 
     public void ShowStageCanvas(StageInfo nextStageInfo)
     {
-        Debug.Log("ShowStageCanvas");
         stageCanvasGroup.DOKill();
         stageCanvasGroup.gameObject.SetActive(true);
         stageNameText.text = nextStageInfo.stageName;
@@ -29,7 +28,6 @@ public class ZoomCanvasManager : MonoBehaviour
 
     public void ShowOptionCanvas(StageInfo nextStageInfo)
     {
-        Debug.Log("ShowOptionCanvas");
         optionCanvasGroup.DOKill();
         optionCanvasGroup.gameObject.SetActive(true);
         optionCanvasGroup.DOFade(1f, duration);
@@ -37,7 +35,6 @@ public class ZoomCanvasManager : MonoBehaviour
 
     public void DismissStageCanvas()
     {
-        Debug.Log("DismissStageCanvas");
         stageCanvasGroup.DOKill();
         stageCanvasGroup.DOFade(0f, duration).OnComplete(() =>
             stageCanvasGroup.gameObject.SetActive(false)
@@ -46,7 +43,6 @@ public class ZoomCanvasManager : MonoBehaviour
 
     public void DismissOptionCanvas()
     {
-        Debug.Log("DismissOptionCanvas");
         optionCanvasGroup.DOKill();
         optionCanvasGroup.DOFade(0f, duration).OnComplete(() =>
             optionCanvasGroup.gameObject.SetActive(false)

@@ -41,7 +41,6 @@ public class Tutorial : MonoBehaviour
             case GuideType.Clock:
                 guideClock.SetActive(true);
                 guideTween = guideClock.GetComponent<SpriteRenderer>().DOFade(1f, 1f).SetLoops(-1, LoopType.Yoyo);
-                Debug.Log("Clock");
                 break;
             case GuideType.Sapporo:
                 guideSapporo.SetActive(true);

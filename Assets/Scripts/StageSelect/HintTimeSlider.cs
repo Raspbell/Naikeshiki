@@ -4,6 +4,7 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine.UI;
 using DG.Tweening;
+using Shapes2D;
 
 public class HintTimeSlider : MonoBehaviour
 {
@@ -102,6 +103,11 @@ public class HintTimeSlider : MonoBehaviour
         if (index >= 0 && index < hintTimes.Length)
         {
             float timeForHint = hintTimes[index];
+            if (timeForHint < 0)
+            {
+                timeForHint = 10;
+            }
+            GameOptions.TimeForHint.Value = timeForHint;
 
             if (timeForHint >= 60)
             {
