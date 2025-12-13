@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5ee3340efd6864439394ae35ca00021, type: 3}
+  m_Name: "SceneList_\u672D\u5E4C\u5C0F\u6A3D_Debug"
+  m_EditorClassIdentifier: 
+  sceneInfos:
+  - SceneName: "\u672D\u5E4C\u5C0F\u6A3D_letao"
+    BGM: {fileID: 8300000, guid: 9953378f9b41f344aadcc95dd6501700, type: 3}
+  - SceneName: "\u672D\u5E4C\u5C0F\u6A3D_\u5C0F\u6A3D\u904B\u6CB3"
+    BGM: {fileID: 8300000, guid: 9953378f9b41f344aadcc95dd6501700, type: 3}
+  - SceneName: Ending
+    BGM: {fileID: 8300000, guid: 2181fff32698e954c96878cce60e3d30, type: 3}

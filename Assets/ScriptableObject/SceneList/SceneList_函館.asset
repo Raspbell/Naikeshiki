@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5ee3340efd6864439394ae35ca00021, type: 3}
+  m_Name: "SceneList_\u51FD\u9928"
+  m_EditorClassIdentifier: 
+  sceneInfos:
+  - SceneName: "\u51FD\u9928_\u516B\u5E61\u5742"
+    BGM: {fileID: 8300000, guid: 49c08d55e0e13b54a8a7a3b519a93ee1, type: 3}
+  - SceneName: "\u51FD\u9928_\u30E9\u30C3\u30AD\u30FC\u30D4\u30A8\u30ED"
+    BGM: {fileID: 8300000, guid: 8dfa2e9f54d4ca548a077a28b40e1d82, type: 3}
+  - SceneName: "\u51FD\u9928_\u897F\u6CE2\u6B62\u5834"
+    BGM: {fileID: 8300000, guid: 2181fff32698e954c96878cce60e3d30, type: 3}
+  - SceneName: "\u51FD\u9928_\u5949\u884C\u6240"
+    BGM: {fileID: 8300000, guid: 9c5a3d2adcce31645af1bee9a0f601e1, type: 3}
+  - SceneName: "\u51FD\u9928_\u4E94\u7A1C\u90ED"
+    BGM: {fileID: 8300000, guid: c12bf5eefcef8764e8a65fcf779b26e9, type: 3}
+  - SceneName: Ending
+    BGM: {fileID: 8300000, guid: f1c15f65724e87443a92bd70aaf99c90, type: 3}

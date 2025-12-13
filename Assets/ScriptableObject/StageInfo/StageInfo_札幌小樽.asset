@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca30e671b46c2434ba98add7144c45f5, type: 3}
+  m_Name: "StageInfo_\u672D\u5E4C\u5C0F\u6A3D"
+  m_EditorClassIdentifier: 
+  stageName: "\u672D\u5E4C\u30FB\u5C0F\u6A3D"
+  sceneNameScriptableObject: {fileID: 11400000, guid: 02b7c5bd68fd1ae428058c96ad1ea917, type: 2}
+  difficulty: 2
