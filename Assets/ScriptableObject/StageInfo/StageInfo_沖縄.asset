@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: "StageInfo_\u6C96\u7E04"
   m_EditorClassIdentifier: 
   stageName: "\u6C96\u7E04"
-  sceneName: 
+  sceneNameScriptableObject: {fileID: 11400000, guid: 50b75fc7cddd18c44a11c59a23830f86, type: 2}
   difficulty: 1

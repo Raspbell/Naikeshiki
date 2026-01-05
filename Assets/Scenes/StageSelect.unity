@@ -142,7 +142,7 @@ PrefabInstance:
     - target: {fileID: 2720137961189691753, guid: 5d301c799e719704d90c28ede0169aef, type: 3}
       propertyPath: stageInfo
       value: 
-      objectReference: {fileID: 11400000, guid: 32e3c7323478fb24d9c9f9176641245a, type: 2}
+      objectReference: {fileID: 11400000, guid: f856ef773f472444cb361116929542a1, type: 2}
     - target: {fileID: 2720137961189691753, guid: 5d301c799e719704d90c28ede0169aef, type: 3}
       propertyPath: zoomProperty.targetOffset.y
       value: 0
@@ -2022,7 +2022,7 @@ PrefabInstance:
     - target: {fileID: 2720137961189691753, guid: 5d301c799e719704d90c28ede0169aef, type: 3}
       propertyPath: stageInfo
       value: 
-      objectReference: {fileID: 11400000, guid: 32e3c7323478fb24d9c9f9176641245a, type: 2}
+      objectReference: {fileID: 11400000, guid: 3a7eddab68c9f29439492537489773f2, type: 2}
     - target: {fileID: 2720137961189691753, guid: 5d301c799e719704d90c28ede0169aef, type: 3}
       propertyPath: zoomProperty.zoomDuration
       value: 2
@@ -6189,7 +6189,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552600243}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6850,6 +6850,7 @@ MonoBehaviour:
   boatDirection: {x: 0, y: 0.39024103, z: 0, w: 0.9207127}
   maxTryCount: 60
   maxSpawnCount: 3
+  firstBoatInterval: 1
   minSpawnInterval: 20
   maxSpawnInterval: 30
   autoSpawnOnStart: 1

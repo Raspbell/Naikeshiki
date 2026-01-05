@@ -5,7 +5,7 @@ using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine.EventSystems;
 
-public class ClickZoomCamera : MonoBehaviour
+public class MapPinInfo : MonoBehaviour
 {
     [SerializeField] private ZoomProperty zoomProperty;
     [SerializeField] private StageInfo stageInfo;
@@ -35,6 +35,8 @@ public class ClickZoomCamera : MonoBehaviour
         cameraManager = FindFirstObjectByType<CameraManager>();
         zoomCanvasManager = FindFirstObjectByType<ZoomCanvasManager>();
         difficulitySignManager = FindFirstObjectByType<DifficulitySignManager>();
+        Zoomed = false;
+        NowZooming = false;
     }
 
     async UniTask Update()

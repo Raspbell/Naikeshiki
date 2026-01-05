@@ -10,7 +10,7 @@ public class CameraManager : MonoBehaviour
     private Vector3 initialPosition;
     private Quaternion initialRotate;
     private Camera cam;
-    private ClickZoomCamera.ZoomProperty prevZoomProperty;
+    private MapPinInfo.ZoomProperty prevZoomProperty;
 
     void Start()
     {
@@ -22,14 +22,14 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    public async UniTask FocusToObject(ClickZoomCamera.ZoomProperty property)
+    public async UniTask FocusToObject(MapPinInfo.ZoomProperty property)
     {
         if (property == null)
         {
             return;
         }
 
-        if (property == prevZoomProperty && ClickZoomCamera.Zoomed)
+        if (property == prevZoomProperty && MapPinInfo.Zoomed)
         {
             return;
         }
@@ -44,7 +44,7 @@ public class CameraManager : MonoBehaviour
         //     distanceWeight = Vector3.Distance(cam.transform.position, property.zoomPoint.position) * zoomDistanceWeight;
         // }
 
-        ClickZoomCamera.NowZooming = true;
+        MapPinInfo.NowZooming = true;
 
         try
         {
@@ -83,11 +83,11 @@ public class CameraManager : MonoBehaviour
             await Task.WhenAll(moveTask, rotTask);
 
             prevZoomProperty = property;
-            ClickZoomCamera.Zoomed = true;
+            MapPinInfo.Zoomed = true;
         }
         finally
         {
-            ClickZoomCamera.NowZooming = false;
+            MapPinInfo.NowZooming = false;
         }
     }
 
@@ -105,7 +105,7 @@ public class CameraManager : MonoBehaviour
         float duration = (prevZoomProperty != null) ? prevZoomProperty.zoomDuration : 0.8f;
         Ease ease = (prevZoomProperty != null) ? prevZoomProperty.ease : Ease.InOutQuad;
 
-        ClickZoomCamera.NowZooming = true;
+        MapPinInfo.NowZooming = true;
 
         try
         {
@@ -124,11 +124,11 @@ public class CameraManager : MonoBehaviour
 
             await Task.WhenAll(moveTask, rotTask);
 
-            ClickZoomCamera.Zoomed = false;
+            MapPinInfo.Zoomed = false;
         }
         finally
         {
-            ClickZoomCamera.NowZooming = false;
+            MapPinInfo.NowZooming = false;
         }
     }
 }

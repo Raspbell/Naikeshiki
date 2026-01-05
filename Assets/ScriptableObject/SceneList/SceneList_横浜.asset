@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ee3340efd6864439394ae35ca00021, type: 3}
   m_Name: "SceneList_\u6A2A\u6D5C"
   m_EditorClassIdentifier: 
-  sceneNames: []
+  sceneInfos:
+  - SceneName: "\u6A2A\u6D5C_\u6A2A\u6D5C\u99C5"
+    BGM: {fileID: 8300000, guid: 49c08d55e0e13b54a8a7a3b519a93ee1, type: 3}
+  - SceneName: "\u6A2A\u6D5C_\u65E5\u672C\u4E38"
+    BGM: {fileID: 8300000, guid: 49c08d55e0e13b54a8a7a3b519a93ee1, type: 3}
+  - SceneName: "\u6A2A\u6D5C_\u81E8\u6E2F\u30D1\u30FC\u30AF"
+    BGM: {fileID: 8300000, guid: 49c08d55e0e13b54a8a7a3b519a93ee1, type: 3}
+  - SceneName: "\u6A2A\u6D5C_\u5916\u4EA4\u5B98\u306E\u5BB6"
+    BGM: {fileID: 8300000, guid: 49c08d55e0e13b54a8a7a3b519a93ee1, type: 3}
+  - SceneName: "\u6A2A\u6D5C_\u8D64\u30EC\u30F3\u30AC\u5009\u5EAB"
+    BGM: {fileID: 8300000, guid: 49c08d55e0e13b54a8a7a3b519a93ee1, type: 3}
+  - SceneName: Ending
+    BGM: {fileID: 8300000, guid: 9c5a3d2adcce31645af1bee9a0f601e1, type: 3}

@@ -25,6 +25,7 @@ public class CursorManager : MonoBehaviour
     [SerializeField] private float tolerance;
     [SerializeField] private float effectWaitingDuration = 0.2f;
     [SerializeField] private float spriteYOffset = 0.5f;
+    [SerializeField] private float completeCircleScale = 2f;
     [SerializeField] private bool isTutorial;
     [SerializeField] private bool isLastStage;
     [SerializeField] private Vector3 lastTargetPosition = new Vector3(0, -2, -10);
@@ -33,6 +34,8 @@ public class CursorManager : MonoBehaviour
     [SerializeField] private CrossfadeAudioController crossfadeAudioController;
     [SerializeField] private SoundEffectInfo soundEffectInfo;
     [SerializeField] private SpriteInfo[] spriteInfos;
+
+    [SerializeField] private float ver1CameraSize = 13f; // バージョン1 で使っていた画像に対するカメラサイズ参照用
 
     public GameObject currentSpriteObject;
 
@@ -49,6 +52,7 @@ public class CursorManager : MonoBehaviour
     private CinemachinePositionComposer cinemachinePositionComposer;
     private int passedFlame = 0;
     private bool waitingAfterComplete = false;
+    private float cameraSizeRatio = 1f;
 
     // --- ヒント機能用変数 ---
     private float lastActionTime; // 最後に正解した時間（または開始時間）
@@ -79,6 +83,8 @@ public class CursorManager : MonoBehaviour
         cinemachinePositionComposer = FindFirstObjectByType<CinemachinePositionComposer>();
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = GameOptions.SEVolume.Value;
+        cameraSizeRatio = Camera.main.orthographicSize / ver1CameraSize;
+        unpickEffect.transform.localScale = unpickEffect.transform.localScale * cameraSizeRatio;
 
         foreach (SpriteInfo pickedSprite in spriteInfos)
         {
@@ -328,14 +334,19 @@ public class CursorManager : MonoBehaviour
         {
             currentSpriteObject = Instantiate(pickedSpritePrefab);
             currentSpriteObject.GetComponent<SpriteRenderer>().sprite = spriteInfos[nextPickIndex].sprite;
-            currentTolerance = spriteInfos[nextPickIndex].overridedTolerance == 0 ? tolerance : spriteInfos[nextPickIndex].overridedTolerance;
+            currentTolerance = spriteInfos[nextPickIndex].overridedTolerance == 0 ? tolerance * cameraSizeRatio : spriteInfos[nextPickIndex].overridedTolerance;
             currentSpriteObject.transform.position = new Vector3(cursorPosition.x, cursorPosition.y, 0);
+            // currentSpriteObject.transform.localScale = pickedSpritePrefab.transform.localScale / cameraSizeRatio;
+            foreach (Transform child in currentSpriteObject.transform)
+            {
+                child.transform.localPosition = child.transform.localPosition * cameraSizeRatio;
+            }
 
             Sequence sequence = DOTween.Sequence();
             foreach (Transform child in currentSpriteObject.transform)
             {
                 Vector3 basePosition = child.transform.localPosition;
-                child.transform.localPosition += new Vector3(0, spriteYOffset, 0);
+                child.transform.localPosition += new Vector3(0, spriteYOffset * cameraSizeRatio, 0);
                 child.GetComponent<SpriteRenderer>().material.SetColor("_Color", Color.clear);
                 sequence.Join(child.transform.DOLocalMove(basePosition, 0.2f))
                         .Join(DOTween.To(() => child.GetComponent<SpriteRenderer>().material.GetColor("_Color"), x => child.GetComponent<SpriteRenderer>().material.SetColor("_Color", x), outlineColor, 0.2f));
@@ -391,6 +402,7 @@ public class CursorManager : MonoBehaviour
         {
             unpickEffect.transform.position = spriteInfos[nextPickIndex - 1].targetOrigin.transform.position;
         }
+
         unpickEffect.Play();
         yield return new WaitForSeconds(isLast ? 0 : effectWaitingDuration);
         onComplete?.Invoke();
@@ -401,7 +413,7 @@ public class CursorManager : MonoBehaviour
         Vector3 cameraCenter = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
         cameraCenter.z = cursor.transform.position.z;
         completeCircle.transform.position = cameraCenter;
-        completeCircle.transform.DOScale(2f, 0.75f);
+        completeCircle.transform.DOScale(completeCircleScale * cameraSizeRatio, 0.75f);
         if (!isLastStage)
         {
             audioSource.PlayOneShot(soundEffectInfo.completeClip);
@@ -477,7 +489,7 @@ public class CursorManager : MonoBehaviour
         sequence
             .SetDelay(1.0f)
             // 1) カメラ移動
-            .Append(Camera.main.transform.DOMove(new Vector3(0f, -2f, -10f), 1.0f))
+            .Append(Camera.main.transform.DOMove(lastTargetPosition, 1.0f))
             // 2) カメラ移動終了後にコールバック
             .AppendCallback(() =>
             {

@@ -7,7 +7,7 @@ public class ButtonManager : MonoBehaviour
 
     public async void OnClickBackButton()
     {
-        if (ClickZoomCamera.NowZooming || !ClickZoomCamera.Zoomed)
+        if (MapPinInfo.NowZooming || !MapPinInfo.Zoomed)
         {
             return;
         }
@@ -18,9 +18,9 @@ public class ButtonManager : MonoBehaviour
         // cameraControllerとzoomCanvasManagerのnullチェック
         if (cameraController != null && zoomCanvasManager != null)
         {
-            if (ClickZoomCamera.prevStageInfo != null)
+            if (MapPinInfo.prevStageInfo != null)
             {
-                if (ClickZoomCamera.prevStageInfo.name == "Option")
+                if (MapPinInfo.prevStageInfo.name == "Option")
                 {
                     zoomCanvasManager.DismissOptionCanvas();
                 }
@@ -40,7 +40,7 @@ public class ButtonManager : MonoBehaviour
             await cameraController.ReturnToInitialPosition();
 
             // ズームアウト完了後にprevStageInfoをリセット
-            ClickZoomCamera.prevStageInfo = null;
+            MapPinInfo.prevStageInfo = null;
         }
     }
 
@@ -49,13 +49,13 @@ public class ButtonManager : MonoBehaviour
         // OnClickStartButtonはStageCanvasからのみ呼ばれる想定
         // (OptionCanvasから呼ばれる場合は、このロジックも見直しが必要)
 
-        if (ClickZoomCamera.prevStageInfo == dummy || ClickZoomCamera.prevStageInfo == null)
+        if (MapPinInfo.prevStageInfo == dummy || MapPinInfo.prevStageInfo == null)
         {
             return;
         }
 
         // Optionが選ばれている場合はスタートさせない
-        if (ClickZoomCamera.prevStageInfo.name == "Option")
+        if (MapPinInfo.prevStageInfo.name == "Option")
         {
             return;
         }
@@ -63,9 +63,9 @@ public class ButtonManager : MonoBehaviour
         GameObject transitionObject = GameObject.FindGameObjectWithTag("SceneTransition_In");
         if (transitionObject != null)
         {
-            GameOptions.InitFields(ClickZoomCamera.prevStageInfo);
-            FindFirstObjectByType<CrossfadeAudioController>().ChangeClip(ClickZoomCamera.prevStageInfo.sceneNameScriptableObject.sceneInfos[0].BGM);
-            StartCoroutine(transitionObject.GetComponent<SceneTransition>().StartSceneTransition(ClickZoomCamera.prevStageInfo.sceneNameScriptableObject.sceneInfos[0].SceneName));
+            GameOptions.InitFields(MapPinInfo.prevStageInfo);
+            FindFirstObjectByType<CrossfadeAudioController>().ChangeClip(MapPinInfo.prevStageInfo.sceneNameScriptableObject.sceneInfos[0].BGM);
+            StartCoroutine(transitionObject.GetComponent<SceneTransition>().StartSceneTransition(MapPinInfo.prevStageInfo.sceneNameScriptableObject.sceneInfos[0].SceneName));
         }
     }
 }

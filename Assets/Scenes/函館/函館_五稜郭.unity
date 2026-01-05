@@ -1459,12 +1459,13 @@ MonoBehaviour:
   arrowCanvasGroup: {fileID: 5001877243961237297}
   clickToNextCanvas: {fileID: 1168726476}
   cinemachineBrain: {fileID: 519420033}
+  openingJingleAudioSource: {fileID: 0}
   tolerance: 2.5
   effectWaitingDuration: 1
   spriteYOffset: 0.5
   isTutorial: 0
   isLastStage: 1
-  lastTargetPosition: {x: 0, y: -2, z: -10}
+  lastTargetPosition: {x: 0, y: -0.0000009536743, z: -10.037}
   bloomIntensity: 0.5
   sceneTransition: {fileID: 1907974015}
   crossfadeAudioController: {fileID: 0}

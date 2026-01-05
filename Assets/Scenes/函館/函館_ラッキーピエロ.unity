@@ -1096,7 +1096,7 @@ MonoBehaviour:
     ScreenPosition: {x: 0, y: 0}
     DeadZone:
       Enabled: 1
-      Size: {x: 2, y: 0.84}
+      Size: {x: 2, y: 0.77}
     HardLimits:
       Enabled: 1
       Size: {x: 2, y: 3}
@@ -1238,6 +1238,7 @@ MonoBehaviour:
   arrowCanvasGroup: {fileID: 5001877243961237297}
   clickToNextCanvas: {fileID: 1168726476}
   cinemachineBrain: {fileID: 0}
+  openingJingleAudioSource: {fileID: 0}
   tolerance: 2.5
   effectWaitingDuration: 1
   spriteYOffset: 0.5

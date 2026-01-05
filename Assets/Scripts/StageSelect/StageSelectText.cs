@@ -10,7 +10,7 @@ public class StageSelectText : MonoBehaviour
 
     private void Update()
     {
-        if (ClickZoomCamera.Zoomed || ClickZoomCamera.NowZooming)
+        if (MapPinInfo.Zoomed || MapPinInfo.NowZooming)
         {
             if (targetText.color.a > 0f)
                 targetText.DOFade(0f, fadeDuration);

@@ -1376,7 +1376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503b5cb77aa1efe4891b819e00ba15a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowArrowIcon: 1
+  allowArrowIcon: 0
   isGrowing: 0
   cursor: {fileID: 2085448384}
   pickedSpritePrefab: {fileID: 8493409824678443694, guid: d4de60b45d1a1a8459ec907ffaab70a9, type: 3}
@@ -1388,11 +1388,13 @@ MonoBehaviour:
   arrowCanvasGroup: {fileID: 5001877243961237297}
   clickToNextCanvas: {fileID: 1168726476}
   cinemachineBrain: {fileID: 0}
+  openingJingleAudioSource: {fileID: 0}
   tolerance: 2.5
   effectWaitingDuration: 1
   spriteYOffset: 0.5
   isTutorial: 0
   isLastStage: 0
+  lastTargetPosition: {x: 0, y: -2, z: -10}
   bloomIntensity: 0.5
   sceneTransition: {fileID: 1907974015}
   crossfadeAudioController: {fileID: 0}

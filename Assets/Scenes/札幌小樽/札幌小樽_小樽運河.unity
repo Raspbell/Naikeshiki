@@ -1601,9 +1601,11 @@ MonoBehaviour:
   arrowCanvasGroup: {fileID: 3317203553733867308}
   clickToNextCanvas: {fileID: 1196579053}
   cinemachineBrain: {fileID: 519420033}
+  openingJingleAudioSource: {fileID: 0}
   tolerance: 2.5
   effectWaitingDuration: 1
   spriteYOffset: 0.5
+  completeCircleScale: 2
   isTutorial: 0
   isLastStage: 1
   lastTargetPosition: {x: 0, y: -2, z: -10}
@@ -1634,6 +1636,7 @@ MonoBehaviour:
     targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
+  ver1CameraSize: 13
   currentSpriteObject: {fileID: 0}
 --- !u!4 &1782498021
 Transform:
@@ -7539,6 +7542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LastStage Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6924354451614199729, guid: cf08ee0ccc714a54c8860cdfdcbf4803, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7108723052327599273, guid: cf08ee0ccc714a54c8860cdfdcbf4803, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7623,6 +7630,22 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 8456014437091168075, guid: cf08ee0ccc714a54c8860cdfdcbf4803, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456014437091168075, guid: cf08ee0ccc714a54c8860cdfdcbf4803, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456014437091168075, guid: cf08ee0ccc714a54c8860cdfdcbf4803, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8456014437091168075, guid: cf08ee0ccc714a54c8860cdfdcbf4803, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4291611852
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

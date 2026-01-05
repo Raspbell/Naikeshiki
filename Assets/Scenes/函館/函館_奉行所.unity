@@ -251,7 +251,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 46.24402, y: 34.1}
+  m_Size: {x: 46.24, y: 34.68}
   m_EdgeRadius: 0
 --- !u!1 &519420028
 GameObject:
@@ -1149,6 +1149,7 @@ MonoBehaviour:
   arrowCanvasGroup: {fileID: 5001877243961237297}
   clickToNextCanvas: {fileID: 1168726476}
   cinemachineBrain: {fileID: 0}
+  openingJingleAudioSource: {fileID: 0}
   tolerance: 2.5
   effectWaitingDuration: 1
   spriteYOffset: 0.5
