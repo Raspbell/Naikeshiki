@@ -8,7 +8,7 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private CanvasGroup openingCanvasGroup;
 
     private Tween guideTween;
-    private CursorManager cursorManager;
+    private StageManager cursorManager;
     private GuideType currentGuideType;
     private bool isPlaying = false;
 
@@ -22,7 +22,7 @@ public class Tutorial : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !isPlaying)
         {
-            cursorManager = GetComponent<CursorManager>();
+            cursorManager = GetComponent<StageManager>();
             isPlaying = true;
             guideClock.SetActive(true);
             openingCanvasGroup.DOFade(0, 1f).SetEase(Ease.InQuint).OnComplete(() =>

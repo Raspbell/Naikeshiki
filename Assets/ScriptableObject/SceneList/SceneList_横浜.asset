@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneInfos:
   - SceneName: "\u6A2A\u6D5C_\u6A2A\u6D5C\u99C5"
-    BGM: {fileID: 8300000, guid: 49c08d55e0e13b54a8a7a3b519a93ee1, type: 3}
+    BGM: {fileID: 8300000, guid: e504f18ff5fd27e4b9ab55e0df4acb63, type: 3}
   - SceneName: "\u6A2A\u6D5C_\u65E5\u672C\u4E38"
-    BGM: {fileID: 8300000, guid: 49c08d55e0e13b54a8a7a3b519a93ee1, type: 3}
-  - SceneName: "\u6A2A\u6D5C_\u81E8\u6E2F\u30D1\u30FC\u30AF"
-    BGM: {fileID: 8300000, guid: 49c08d55e0e13b54a8a7a3b519a93ee1, type: 3}
+    BGM: {fileID: 8300000, guid: ab26d4752b627d74780c08f36094959d, type: 3}
   - SceneName: "\u6A2A\u6D5C_\u5916\u4EA4\u5B98\u306E\u5BB6"
     BGM: {fileID: 8300000, guid: 49c08d55e0e13b54a8a7a3b519a93ee1, type: 3}
+  - SceneName: "\u6A2A\u6D5C_\u81E8\u6E2F\u30D1\u30FC\u30AF"
+    BGM: {fileID: 8300000, guid: ab26d4752b627d74780c08f36094959d, type: 3}
   - SceneName: "\u6A2A\u6D5C_\u8D64\u30EC\u30F3\u30AC\u5009\u5EAB"
-    BGM: {fileID: 8300000, guid: 49c08d55e0e13b54a8a7a3b519a93ee1, type: 3}
+    BGM: {fileID: 8300000, guid: a29db1c452fb8d2439a1fc1e0b0ed50b, type: 3}
   - SceneName: Ending
-    BGM: {fileID: 8300000, guid: 9c5a3d2adcce31645af1bee9a0f601e1, type: 3}
+    BGM: {fileID: 8300000, guid: d9a520dacf7d94a4abdace47eec2f642, type: 3}

@@ -9,8 +9,8 @@ public class GameOptions : MonoBehaviour
     public static AudioClip StageSelectBGM;
     public static ReactiveProperty<float> BGMVolume = new ReactiveProperty<float>(1f);
     public static ReactiveProperty<float> SEVolume = new ReactiveProperty<float>(1f);
-    public static ReactiveProperty<bool> AutoChangeScene = new ReactiveProperty<bool>(true);
-    public static ReactiveProperty<bool> UseHelpMode = new ReactiveProperty<bool>(true);
+    public static ReactiveProperty<bool> AutoChangeScene = new ReactiveProperty<bool>(false);
+    public static ReactiveProperty<bool> UseHelpMode = new ReactiveProperty<bool>(false);
     public static ReactiveProperty<float> TimeForHint = new ReactiveProperty<float>(180);
 
     [SerializeField] private SceneNameScriptableObject sceneNameScriptableObject;
