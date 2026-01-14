@@ -36,11 +36,11 @@ public class GameOptions : MonoBehaviour
 
     private void DumpPlayerPrefs()
     {
-        Debug.Log("BGMVolume: " + PlayerPrefs.GetFloat("BGMVolume", -1f));
-        Debug.Log("SEVolume: " + PlayerPrefs.GetFloat("SEVolume", -1f));
-        Debug.Log("AutoSkip: " + PlayerPrefs.GetInt("AutoSkip", -1));
-        Debug.Log("UseHelpMode: " + PlayerPrefs.GetInt("UseHelpMode", -1));
-        Debug.Log("TimeForHint: " + PlayerPrefs.GetFloat("TimeForHint", -1f));
+        Debug.Log("BGMVolume: " + BGMVolume.Value);
+        Debug.Log("SEVolume: " + SEVolume.Value);
+        Debug.Log("AutoSkip: " + AutoChangeScene.Value);
+        Debug.Log("UseHelpMode: " + UseHelpMode.Value);
+        Debug.Log("TimeForHint: " + TimeForHint.Value);
     }
 }
 

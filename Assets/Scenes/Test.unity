@@ -2511,76 +2511,78 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503b5cb77aa1efe4891b819e00ba15a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tolerance: 1.5
+  ver1CameraSize: 13
+  spriteYOffset: 0.5
+  effectWaitingDuration: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
   cursor: {fileID: 2085448384}
   pickedSpritePrefab: {fileID: 729705267081935011, guid: 74d6e1e1f1b1129429dd8d042e346307, type: 3}
-  completeCircle: {fileID: 0}
-  volume: {fileID: 0}
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  unpickEffect: {fileID: 2124591455}
-  titleCanvasGroup: {fileID: 0}
-  arrowCanvasGroup: {fileID: 0}
-  cinemachineBrain: {fileID: 0}
-  tolerance: 1.5
-  effectWaitingDuration: 1
-  spriteYOffset: 0.5
-  isTutorial: 0
-  isLastStage: 0
-  bloomIntensity: 0.5
   sceneTransition: {fileID: 0}
-  crossfadeAudioController: {fileID: 0}
-  soundEffectInfo:
-    unpickClip: {fileID: 0}
-    completeClip: {fileID: 0}
   spriteInfos:
   - sprite: {fileID: 21300000, guid: fc5c692f94a6f7a408ef1e93fc22f496, type: 3}
     targetSpriteMask: {fileID: 627277743}
+    targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
   - sprite: {fileID: 21300000, guid: 284b695ff9981344f8da6e3dfb1bc370, type: 3}
     targetSpriteMask: {fileID: 1313115964}
+    targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
   - sprite: {fileID: 21300000, guid: 6404d12727712744b8a92d5a6fcdd71b, type: 3}
     targetSpriteMask: {fileID: 2005481240}
+    targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
   - sprite: {fileID: 21300000, guid: 087275768f65d1946b9c6a8ea5d6a174, type: 3}
     targetSpriteMask: {fileID: 1328817178}
+    targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
   - sprite: {fileID: 21300000, guid: b829ef5ab22a8224a8710c71469a8fe4, type: 3}
     targetSpriteMask: {fileID: 1788087982}
+    targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
   - sprite: {fileID: 21300000, guid: ea9c2c773b53e0841b397bc3c66b13df, type: 3}
     targetSpriteMask: {fileID: 460111340}
+    targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
   - sprite: {fileID: 21300000, guid: 4e0e580fd26db494d824b5f68c2474d3, type: 3}
     targetSpriteMask: {fileID: 595534849}
+    targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
   - sprite: {fileID: 21300000, guid: 9fcdbd8736a57c440bbffc9f0a45fdc8, type: 3}
     targetSpriteMask: {fileID: 82626254}
+    targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
   - sprite: {fileID: 21300000, guid: 546cf2d8f1d4c0e4a99a911072a38aaf, type: 3}
     targetSpriteMask: {fileID: 1905855913}
+    targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
   - sprite: {fileID: 21300000, guid: f02b26f36c2d5e84dbb9281e1dee970e, type: 3}
     targetSpriteMask: {fileID: 74383053}
+    targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
   - sprite: {fileID: 21300000, guid: a8817e0998459254aa47081a081c56a8, type: 3}
     targetSpriteMask: {fileID: 355554705}
+    targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
   - sprite: {fileID: 21300000, guid: 2fd70de707ee1844cb30f74aac331995, type: 3}
     targetSpriteMask: {fileID: 274706747}
+    targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
-  currentSpriteObject: {fileID: 0}
+  isTutorial: 0
+  isLastStage: 0
+  isGrowing: 0
 --- !u!4 &1782498021
 Transform:
   m_ObjectHideFlags: 0
@@ -3210,6 +3212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNameScriptableObject: {fileID: 0}
+  stageSelectBGM: {fileID: 0}
 --- !u!1 &2067856504
 GameObject:
   m_ObjectHideFlags: 0

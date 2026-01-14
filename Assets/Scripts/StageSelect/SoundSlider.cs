@@ -4,7 +4,6 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine.UI;
 using DG.Tweening;
-using Shapes2D;
 
 public class SoundSlider : MonoBehaviour
 {

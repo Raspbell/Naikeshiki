@@ -275,6 +275,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 519420033}
     - target: {fileID: 6354235131875787770, guid: b1276ee318084a443a3d3292b3d68549, type: 3}
+      propertyPath: lastTargetPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6354235131875787770, guid: b1276ee318084a443a3d3292b3d68549, type: 3}
       propertyPath: cinemachinePositionComposer
       value: 
       objectReference: {fileID: 1348016350}

@@ -8,11 +8,6 @@ public class StageHintManager : MonoBehaviour
     private GameObject currentHintObject;
     private Tween hintTween;
 
-    public void Initialize()
-    {
-        lastActionTime = Time.time;
-    }
-
     public void ResetTimer()
     {
         lastActionTime = Time.time;
@@ -20,7 +15,11 @@ public class StageHintManager : MonoBehaviour
 
     public void CheckAndShowHint(int nextPickIndex, StageManager.SpriteInfo[] spriteInfos)
     {
-        if (currentHintObject != null) return;
+        if (currentHintObject != null)
+        {
+            return;
+        }
+
         if (Time.time - lastActionTime > GameOptions.TimeForHint.Value)
         {
             ShowHint(nextPickIndex, spriteInfos);
@@ -36,12 +35,12 @@ public class StageHintManager : MonoBehaviour
         currentHintObject = Instantiate(pickedSpritePrefab, target.position, pickedSpritePrefab.transform.rotation);
         foreach (Transform child in currentHintObject.transform) Destroy(child.gameObject);
 
-        var sr = currentHintObject.GetComponent<SpriteRenderer>();
-        if (sr != null)
+        var spriteRenderer = currentHintObject.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
         {
-            sr.sprite = info.sprite;
-            sr.color = new Color(1, 1, 1, 0.1f);
-            hintTween = sr.DOFade(0.4f, 1.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
+            spriteRenderer.sprite = info.sprite;
+            spriteRenderer.color = new Color(1, 1, 1, 0.1f);
+            hintTween = spriteRenderer.DOFade(0.4f, 1.5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutSine);
         }
     }
 

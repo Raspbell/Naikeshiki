@@ -65,7 +65,7 @@ public class StageManager : MonoBehaviour
             tutorial.StartGuide(Tutorial.GuideType.Clock);
         }
 
-        hintManager.Initialize();
+        hintManager.ResetTimer();
         effectManager.Initialize(cameraSizeRatio);
     }
 
@@ -82,7 +82,7 @@ public class StageManager : MonoBehaviour
         {
             cursor.transform.position = new Vector3(cursorPosition.x, cursorPosition.y, 0);
 
-            if (!isTutorial && !isLastStage && GameOptions.UseHelpMode.Value)
+            if (!isTutorial && GameOptions.UseHelpMode.Value)
             {
                 hintManager.CheckAndShowHint(nextPickIndex, spriteInfos);
             }

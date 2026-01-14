@@ -4,14 +4,13 @@ using UniRx;
 using UniRx.Triggers;
 using UnityEngine.UI;
 using DG.Tweening;
-using Shapes2D;
 
 public class HintTimeSlider : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI hintTimeText;
     [SerializeField] private float alphaWhenHintDisabled = 0.3f;
     [SerializeField] private float timeForFade = 0.2f;
-    [SerializeField] private float[] hintTimes = new float[6];
+    [SerializeField] private float[] hintTimeValues = new float[6];
     [SerializeField] private float hintTextOffsetY = 30f;
 
     private Slider hintTimeSlider;
@@ -31,23 +30,23 @@ public class HintTimeSlider : MonoBehaviour
         }
 
         hintTimeSlider.interactable = GameOptions.UseHelpMode.Value;
-        hintTimeSlider.maxValue = hintTimes.Length - 1;
+        hintTimeSlider.maxValue = hintTimeValues.Length - 1;
 
         int nearestIndex = 0;
-        if (hintTimes != null && hintTimes.Length > 0)
+        if (hintTimeValues != null && hintTimeValues.Length > 0)
         {
             float savedValue = PlayerPrefs.GetFloat("TimeForHint", -1f);
 
-            if (savedValue >= 0 && savedValue < hintTimes.Length)
+            if (savedValue >= 0 && savedValue < hintTimeValues.Length)
             {
                 nearestIndex = (int)savedValue;
             }
             else
             {
-                float bestDiff = Mathf.Abs(GameOptions.TimeForHint.Value - hintTimes[0]);
-                for (int i = 1; i < hintTimes.Length; i++)
+                float bestDiff = Mathf.Abs(GameOptions.TimeForHint.Value - hintTimeValues[0]);
+                for (int i = 1; i < hintTimeValues.Length; i++)
                 {
-                    float diff = Mathf.Abs(GameOptions.TimeForHint.Value - hintTimes[i]);
+                    float diff = Mathf.Abs(GameOptions.TimeForHint.Value - hintTimeValues[i]);
                     if (diff < bestDiff)
                     {
                         bestDiff = diff;
@@ -83,8 +82,17 @@ public class HintTimeSlider : MonoBehaviour
         hintTimeSlider.OnPointerUpAsObservable()
             .Subscribe(_ =>
             {
-                PlayerPrefs.SetFloat("TimeForHint", hintTimeSlider.value);
-                PlayerPrefs.Save();
+                int hintIndex = (int)hintTimeSlider.value;
+
+                if (hintIndex >= 0 && hintIndex < hintTimeValues.Length)
+                {
+                    float selectedTime = hintTimeValues[hintIndex];
+                    GameOptions.TimeForHint.Value = selectedTime;
+                    PlayerPrefs.SetFloat("TimeForHint", selectedTime);
+                    PlayerPrefs.Save();
+
+                    Debug.Log($"ヒント時間を更新: インデックス{hintIndex} -> 時間{selectedTime}");
+                }
             })
             .AddTo(this);
     }
@@ -100,9 +108,9 @@ public class HintTimeSlider : MonoBehaviour
     {
         int index = (int)hintTimeSlider.value;
         string hintText = "";
-        if (index >= 0 && index < hintTimes.Length)
+        if (index >= 0 && index < hintTimeValues.Length)
         {
-            float timeForHint = hintTimes[index];
+            float timeForHint = hintTimeValues[index];
             if (timeForHint < 0)
             {
                 timeForHint = 10;

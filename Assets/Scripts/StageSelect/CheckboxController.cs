@@ -71,9 +71,9 @@ public class CheckboxController : MonoBehaviour
                 {
                     PlayCheckAnimation();
                 }
-                // GameOptions.AutoChangeScene.Value = !GameOptions.AutoChangeScene.Value;
-                // PlayerPrefs.SetInt("AutoSkip", GameOptions.AutoChangeScene.Value ? 1 : 0);
-                // PlayerPrefs.Save();
+                GameOptions.AutoChangeScene.Value = !GameOptions.AutoChangeScene.Value;
+                PlayerPrefs.SetInt("AutoSkip", GameOptions.AutoChangeScene.Value ? 1 : 0);
+                PlayerPrefs.Save();
                 break;
 
             case Options.HelpMode:
@@ -85,9 +85,9 @@ public class CheckboxController : MonoBehaviour
                 {
                     PlayCheckAnimation();
                 }
-                // GameOptions.UseHelpMode.Value = !GameOptions.UseHelpMode.Value;
-                // PlayerPrefs.SetInt("UseHelpMode", GameOptions.UseHelpMode.Value ? 1 : 0);
-                // PlayerPrefs.Save();
+                GameOptions.UseHelpMode.Value = !GameOptions.UseHelpMode.Value;
+                PlayerPrefs.SetInt("UseHelpMode", GameOptions.UseHelpMode.Value ? 1 : 0);
+                PlayerPrefs.Save();
                 break;
         }
     }
