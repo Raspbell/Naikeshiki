@@ -243,7 +243,6 @@ MonoBehaviour:
   arrowCanvasGroup: {fileID: 0}
   clickToNextCanvas: {fileID: 0}
   allowArrowIcon: 0
-  stageManager: {fileID: 1396603331360523368}
 --- !u!1 &4652821578059360415
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,6 +277,7 @@ Transform:
   - {fileID: 7158482366098730493}
   - {fileID: 3792240106623302465}
   - {fileID: 8428946528668151252}
+  - {fileID: 7781529963295700049}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5539851034261681284
@@ -329,7 +329,6 @@ MonoBehaviour:
   volume: {fileID: 0}
   bloomIntensity: 0.5
   lastTargetPosition: {x: 0, y: -2, z: -10}
-  stageManager: {fileID: 1396603331360523368}
 --- !u!1 &6944551736500951361
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,3 +493,47 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &7541931576204846606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7781529963295700049}
+  - component: {fileID: 1243402902781191471}
+  m_Layer: 0
+  m_Name: PuzzleAnalyticsTracker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7781529963295700049
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7541931576204846606}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4597867264770249988}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1243402902781191471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7541931576204846606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 770f69d30ec6d13428025cbeed227705, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

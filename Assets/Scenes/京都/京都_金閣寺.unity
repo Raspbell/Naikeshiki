@@ -1110,11 +1110,13 @@ MonoBehaviour:
   sceneTransition: {fileID: 1907974015}
   spriteInfos:
   - sprite: {fileID: 21300000, guid: eb36fe9f7defd784594217eda42647a2, type: 3}
+    spriteName: 
     targetSpriteMask: {fileID: 1050122208}
     targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}
     overridedTolerance: 0
   - sprite: {fileID: 21300000, guid: b702ea76eb10821459702b098336944b, type: 3}
+    spriteName: 
     targetSpriteMask: {fileID: 1137639730}
     targetOrigin: {fileID: 0}
     overridedOutlineColor: {r: 0, g: 0, b: 0, a: 0}

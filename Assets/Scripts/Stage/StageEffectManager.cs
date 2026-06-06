@@ -47,13 +47,15 @@ public class StageEffectManager : MonoBehaviour
         instantiatedUnpickEffect.Play();
     }
 
-    public void PlayCompleteEffect(float cameraSizeRatio, bool isLastStage)
+    public Tween PlayCompleteEffect(float cameraSizeRatio, bool isLastStage)
     {
         Vector3 center = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
         center.z = -10;
         instantiatedCompleteCircle.transform.position = new Vector3(center.x, center.y, 0);
-        instantiatedCompleteCircle.transform.DOScale(completeCircleScale * cameraSizeRatio, 0.75f);
+
         if (!isLastStage) audioSource.PlayOneShot(soundEffectInfo.completeClip);
+
+        return instantiatedCompleteCircle.transform.DOScale(completeCircleScale * cameraSizeRatio, 0.75f);
     }
 
     public void PlayOpeningJingle()

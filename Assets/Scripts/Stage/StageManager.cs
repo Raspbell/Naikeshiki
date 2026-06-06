@@ -2,8 +2,6 @@ using UnityEngine;
 using System.Collections;
 using System;
 using DG.Tweening;
-using UniRx;
-using UnityEditor.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
@@ -25,10 +23,13 @@ public class StageManager : MonoBehaviour
     private StageHintManager hintManager;
     private StageCameraManager cameraManager;
 
+    private PuzzleAnalyticsTracker analyticsTracker;
+
     [Serializable]
     public class SpriteInfo
     {
         public Sprite sprite;
+        public string spriteName;
         public GameObject targetSpriteMask;
         public GameObject targetOrigin;
         public Color overridedOutlineColor = Color.clear;
@@ -38,7 +39,7 @@ public class StageManager : MonoBehaviour
     public GameObject currentSpriteObject { get; private set; }
     private int nextPickIndex = 0;
     private float currentTolerance;
-    public bool isPlaying { get; private set; } = true;
+    public bool isPlaying { get; private set; } = false;
     private int passedFlame = 0;
     private bool waitingAfterComplete = false;
     private float cameraSizeRatio = 1f;
@@ -52,6 +53,8 @@ public class StageManager : MonoBehaviour
         uiManager = FindFirstObjectByType<StageUIManager>();
         hintManager = FindFirstObjectByType<StageHintManager>();
         cameraManager = FindFirstObjectByType<StageCameraManager>();
+        analyticsTracker = FindFirstObjectByType<PuzzleAnalyticsTracker>();
+
         cameraSizeRatio = Camera.main.orthographicSize / ver1CameraSize;
 
         foreach (SpriteInfo pickedSprite in spriteInfos)
@@ -63,6 +66,10 @@ public class StageManager : MonoBehaviour
         {
             tutorial = GetComponent<Tutorial>();
             tutorial.StartGuide(Tutorial.GuideType.Clock);
+        }
+        else
+        {
+            isPlaying = true;
         }
 
         hintManager.ResetTimer();
@@ -94,7 +101,7 @@ public class StageManager : MonoBehaviour
         if (currentSpriteObject != null)
         {
             currentSpriteObject.transform.position = new Vector3(cursorPosition.x, cursorPosition.y, 0);
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && isPlaying)
             {
                 HandleSelection(cursorPosition);
             }
@@ -103,6 +110,11 @@ public class StageManager : MonoBehaviour
         if (waitingAfterComplete && Input.GetMouseButtonDown(0))
         {
             HandlePostCompleteInput();
+        }
+
+        if (isTutorial && Input.GetMouseButtonDown(0))
+        {
+            isPlaying = true;
         }
 
         passedFlame++;
@@ -124,6 +136,13 @@ public class StageManager : MonoBehaviour
         if (distance <= currentTolerance)
         {
             info.targetSpriteMask.SetActive(true);
+
+            // 追加: ピースがはまったログを送信
+            if (analyticsTracker != null)
+            {
+                analyticsTracker.TrackPieceSolved(info.spriteName);
+            }
+
             if (nextPickIndex < spriteInfos.Length - 1)
             {
                 UnpickSprite(() => PickNextSprite(), false);
@@ -149,6 +168,7 @@ public class StageManager : MonoBehaviour
             currentSpriteObject.GetComponent<SpriteRenderer>().sprite = info.sprite;
             currentTolerance = info.overridedTolerance == 0 ? tolerance * cameraSizeRatio : info.overridedTolerance;
             currentSpriteObject.transform.position = new Vector3(cursorPosition.x, cursorPosition.y, 0);
+            info.spriteName = info.sprite.name;
 
             foreach (Transform child in currentSpriteObject.transform)
             {
@@ -208,12 +228,24 @@ public class StageManager : MonoBehaviour
 
     void FinalizeStage()
     {
+        // 追加: ステージクリアログを送信
+        if (analyticsTracker != null)
+        {
+            analyticsTracker.TrackStageCleared();
+        }
+
         if (isTutorial)
         {
             TurtorialStageEffect();
         }
         else if (isLastStage)
         {
+            // 追加: 地方クリアログを送信
+            if (analyticsTracker != null)
+            {
+                analyticsTracker.TrackRegionCleared();
+            }
+
             LastStageEffect();
         }
         else
@@ -233,10 +265,12 @@ public class StageManager : MonoBehaviour
 
     void MigrateToNextScene()
     {
-        effectManager.PlayCompleteEffect(cameraSizeRatio, false);
-        crossfadeAudioController.ChangeClip(GameOptions.SceneInfos[GameOptions.CurrentSceneIndex].BGM);
-        GameOptions.CurrentSceneIndex++;
-        StartCoroutine(sceneTransition.StartSceneTransition(GameOptions.SceneInfos[GameOptions.CurrentSceneIndex].SceneName, 0f));
+        effectManager.PlayCompleteEffect(cameraSizeRatio, false).OnComplete(() =>
+        {
+            crossfadeAudioController.ChangeClip(GameOptions.SceneInfos[GameOptions.CurrentSceneIndex].BGM);
+            GameOptions.CurrentSceneIndex++;
+            StartCoroutine(sceneTransition.StartSceneTransition(GameOptions.SceneInfos[GameOptions.CurrentSceneIndex].SceneName, 0f));
+        });
     }
 
     void TurtorialStageEffect()

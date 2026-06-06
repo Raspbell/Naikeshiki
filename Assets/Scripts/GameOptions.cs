@@ -34,6 +34,18 @@ public class GameOptions : MonoBehaviour
         CurrentSceneIndex = 0;
     }
 
+    public static void ResetRuntimeState()
+    {
+        SceneInfos = null;
+        CurrentSceneIndex = 0;
+        StageSelectBGM = null;
+        BGMVolume = new ReactiveProperty<float>(1f);
+        SEVolume = new ReactiveProperty<float>(1f);
+        AutoChangeScene = new ReactiveProperty<bool>(false);
+        UseHelpMode = new ReactiveProperty<bool>(false);
+        TimeForHint = new ReactiveProperty<float>(180f);
+    }
+
     private void DumpPlayerPrefs()
     {
         Debug.Log("BGMVolume: " + BGMVolume.Value);
